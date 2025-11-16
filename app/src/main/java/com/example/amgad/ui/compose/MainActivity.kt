@@ -1,9 +1,11 @@
 package com.example.amgad.ui.compose
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -37,11 +39,13 @@ import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.CompanyColor
 import com.example.amgad.ui.theme.YankeesBlue
 import com.example.app.ui.navigation.bottomTabs
+import com.example.attendance.AttendanceScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -52,6 +56,7 @@ class MainActivity : ComponentActivity() {
 }
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainRoot() {
@@ -89,7 +94,7 @@ fun MainRoot() {
                 }
 
                 composable("offers") { ProfileSettingsScreen() }
-                composable("vendors") { Screen("Vendors Screen") }
+                composable("vendors") { AttendanceScreen() }
                 composable("news") { Screen("News Screen") }
                 composable("consultant") { Screen("Profile Screen") }
             }

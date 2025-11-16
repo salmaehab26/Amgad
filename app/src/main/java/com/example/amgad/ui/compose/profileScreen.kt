@@ -4,16 +4,33 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,7 +41,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,33 +48,33 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.amgad.R
 import com.example.amgad.ui.theme.Alexandria
+import com.example.amgad.ui.theme.BackgroundColor
 import com.example.amgad.ui.theme.CompanyColor
 import com.example.amgad.ui.theme.GrayBodyTextColor
+import com.example.amgad.ui.theme.LogOutRed
 import com.example.amgad.ui.theme.ProfileBoxBannerBackground
 import com.example.amgad.ui.theme.ProfileBoxBannerBorder
 import com.example.amgad.ui.theme.ProfileBoxBannerText
+import com.example.amgad.ui.theme.ProfileBoxLocationBackground
+import com.example.amgad.ui.theme.SettingsIconBackground
 import com.example.amgad.ui.theme.YankeesBlue
 
-@Preview
+@Preview(showBackground = true)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileSettingsScreen() {
     var openDialog by remember { mutableStateOf(false) }
 
-    Scaffold { paddingValues ->
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .verticalScroll(rememberScrollState())
-                .background(CompanyColor.copy(0.02f))
-        ) {
+                .verticalScroll(rememberScrollState())) {
             Row(
                 modifier = Modifier
                     .padding(end = 10.dp)
                     .fillMaxWidth()
-                    .height(45.dp)
-                    .background(CompanyColor.copy(0.02f)),
+                    .height(45.dp),
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -70,16 +86,15 @@ fun ProfileSettingsScreen() {
             }
             Spacer(modifier = Modifier.height(16.dp))
 
-//            ProfileHeader()
-
-//            Spacer(modifier = Modifier.height(16.dp))
-
-//            MoodTrackerCard()
+            ProfileHeader()
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Premium Card
-            PersonlityTest(onClick ={ openDialog = true })
+            MoodTrackerCard()
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            PersonlityTest(onClick = { openDialog = true })
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -88,17 +103,14 @@ fun ProfileSettingsScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Logout Button
             LogoutButton()
 
             Spacer(modifier = Modifier.height(24.dp))
         }
         PersonalityDialog(
-            openDialog = openDialog,
-            onDismiss = { openDialog = false }
-        )
+            openDialog = openDialog, onDismiss = { openDialog = false })
     }
-}
+
 
 @Composable
 fun ProfileHeader() {
@@ -106,7 +118,7 @@ fun ProfileHeader() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
-        colors = CardDefaults.cardColors(containerColor = CompanyColor.copy(0.02f)),
+        colors = CardDefaults.cardColors(containerColor =  Color.Transparent),
         shape = RoundedCornerShape(16.dp)
     ) {
         Column(
@@ -186,12 +198,13 @@ fun ProfileHeader() {
                 modifier = Modifier
                     .width(300.dp)
                     .height(90.dp)
-                    .background(ProfileBoxBannerBackground)
+                    .background(ProfileBoxLocationBackground)
             ) {
 
                 Image(
                     painter = painterResource(id = R.drawable.sign_in_out_location),
-                    contentDescription = "location", Modifier.size(24.dp)
+                    contentDescription = "location",
+                    Modifier.size(24.dp)
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))
@@ -226,23 +239,25 @@ fun MoodTrackerCard() {
             .height(165.dp)
             .padding(horizontal = 16.dp),
         colors = CardDefaults.cardColors(containerColor = ProfileBoxBannerBackground),
-        shape = RoundedCornerShape(16.dp), border = BorderStroke(
-            color = ProfileBoxBannerBorder,
-            width = 1.dp
+        shape = RoundedCornerShape(16.dp),
+        border = BorderStroke(
+            color = ProfileBoxBannerBorder, width = 1.dp
 
         )
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(165.dp).padding(top=15.dp),
+                .height(165.dp)
+                .padding(top = 15.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Text(
                 text = "ما هو شعورك اليوم؟",
                 fontSize = 14.sp,
-                color = YankeesBlue, fontFamily = Alexandria
+                color = YankeesBlue,
+                fontFamily = Alexandria
             )
 
             Spacer(modifier = Modifier.height(25.dp))
@@ -322,71 +337,158 @@ fun MoodTrackerCard() {
 }
 
 
-
 @Composable
 fun SettingsSection() {
-    Card(
+
+    Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
-        colors = CardDefaults.cardColors(containerColor = White),
-        shape = RoundedCornerShape(16.dp)
+        horizontalAlignment = Alignment.End
     ) {
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Item("الاعدادات الصوتية", Icons.Default.Notifications)
-            Divider(color = Color(0xFFF0F0F0))
-            Item("مذكرات اليوميات المشغلة", Icons.Default.DateRange)
-            Divider(color = Color(0xFFF0F0F0))
-            Item("تنشيط وعقد المستخدم معنا", Icons.Default.Lock)
-            Divider(color = Color(0xFFF0F0F0))
-            Item("الاعجوبي المستخدمة معنا", Icons.Default.MailOutline)
-            Divider(color = Color(0xFFF0F0F0))
-            Item("اعدادات", Icons.Default.Settings)
-            Divider(color = Color(0xFFF0F0F0))
-            Item("البحتاني المشغلة", Icons.Default.Star)
-            Divider(color = Color(0xFFF0F0F0))
-            Item("اليدل للملاة", Icons.Default.Settings)
-            Divider(color = Color(0xFFF0F0F0))
-            Item("الاشتراك المجاني", Icons.Default.Person)
-            Divider(color = Color(0xFFF0F0F0))
-            Item("المعلومات", Icons.Default.Info)
-            Divider(color = Color(0xFFF0F0F0))
-            Item("مستخدم الدعوم", Icons.Default.Call)
+        Text(
+            text = "حسابي الشخصى",
+            fontFamily = Alexandria,
+            fontSize = 14.sp,
+            color = YankeesBlue,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = White),
+            shape = RoundedCornerShape(10.dp)
+        ) {
+            Item("البيانات الاساسية", R.drawable.ic_settings_profile)
+            Item("فئات العروض المفضلة", R.drawable.ic_offer_preferences_profile)
         }
+        Spacer(modifier = Modifier.height(30.dp))
+        Text(
+            text = "النقاط و العروض المستفاد منها",
+            fontFamily = Alexandria,
+            fontSize = 14.sp,
+            color = YankeesBlue,
+            modifier = Modifier.padding(bottom = 15.dp)
+        )
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = White),
+            shape = RoundedCornerShape(10.dp)
+        ) {
+            Item("العروض المستفاد منها", R.drawable.ic_redeemed_offers_profile)
+        }
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Text(
+            text = "المفضلة",
+            fontFamily = Alexandria,
+            fontSize = 14.sp,
+            color = YankeesBlue,
+            modifier = Modifier.padding(bottom = 15.dp)
+        )
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = White),
+            shape = RoundedCornerShape(10.dp)
+        ) {
+            Item("العروض المفضلة", R.drawable.ic_offers_profile)
+            Item("المتاجر المفضلة", R.drawable.ic_vendors_profile)
+        }
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Text(
+            text = "المفضلة",
+            fontFamily = Alexandria,
+            fontSize = 14.sp,
+            color = YankeesBlue,
+            modifier = Modifier.padding(bottom = 15.dp)
+        )
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = White),
+            shape = RoundedCornerShape(10.dp)
+        ) {  Item("أفراد العائلة", R.drawable.ic_family_members_profile)}
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = White),
+            shape = RoundedCornerShape(10.dp)
+        ) {  Item("الدعم الفني", R.drawable.ic_support_tickets)}
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = White),
+            shape = RoundedCornerShape(10.dp)
+        ) {  Item("الإعدادات", R.drawable.ic_settings)}
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = White),
+            shape = RoundedCornerShape(10.dp)
+        ) {  Item("تسجيل خروج", R.drawable.ic_logout_profile,false)}
     }
 }
 
+
 @Composable
-fun Item(title: String, icon: ImageVector) {
+fun Item(title: String, image: Int, showArrow: Boolean = true) {
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable { }
             .padding(horizontal = 16.dp, vertical = 16.dp),
-        verticalAlignment = Alignment.CenterVertically) {
-        Icon(
-            Icons.Default.KeyboardArrowLeft,
-            contentDescription = null,
-            tint = Color(0xFFCCCCCC),
-            modifier = Modifier.size(20.dp)
-        )
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween) {
+        if (showArrow) {
+            Icon(
+                Icons.Default.KeyboardArrowLeft,
+                contentDescription = null,
+                modifier = Modifier.size(20.dp)
+            )
+        } else {
+            Spacer(modifier = Modifier.width(20.dp))
+        }
 
-        Spacer(modifier = Modifier.width(12.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                text = title,
+                fontSize = 14.sp, fontFamily = Alexandria,
+                color = YankeesBlue,
 
-        Text(
-            text = title,
-            fontSize = 14.sp,
-            color = Color(0xFF2C2C2C),
-            modifier = Modifier.weight(1f)
-        )
+                )
 
-        Icon(
-            icon,
-            contentDescription = null,
-            tint = Color(0xFF999999),
-            modifier = Modifier.size(20.dp)
-        )
+            Spacer(modifier = Modifier.width(8.dp))
+
+            Box(
+                modifier = Modifier
+                    .size(40.dp)
+                    .background(
+                        color = SettingsIconBackground, shape = RoundedCornerShape(10.dp)
+                    ),
+                contentAlignment = Alignment.Center,
+            ) {
+                Image(
+                    painter = painterResource(id = image),
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+
+            }
+        }
+
+
     }
+
 }
 
 @Composable
@@ -398,12 +500,12 @@ fun LogoutButton() {
             .padding(horizontal = 16.dp)
             .height(50.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFFE53935)
+            containerColor = LogOutRed
         ),
-        shape = RoundedCornerShape(12.dp)
+        shape = RoundedCornerShape(6.dp)
     ) {
         Text(
-            text = "تسجيل الخروج للمستخدم", fontSize = 16.sp, fontWeight = FontWeight.SemiBold
+            text = "تقديم طلب استقالة", fontSize = 18.sp,  fontFamily = Alexandria
         )
     }
 }

@@ -1,6 +1,8 @@
 package com.example.amgad.ui.theme
 
+import android.text.style.BackgroundColorSpan
 import androidx.compose.ui.graphics.Color
+import okhttp3.internal.http2.Settings
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
@@ -22,6 +24,8 @@ val AssessmentCardGrayText = Color(0xFF828398)
 val HrRequestBox1 = Color(0xFFF5A158)
 val HrRequestBox2 = Color(0xFFE7636F)
 val HrRequestBox3 = Color(0xFF679CC8)
+
+
 val HrRequestBox4 = Color(0xFF5CBC6C)
 val HrRequestBox5 = Color(0xFF7961AC)
 val HrRequestBox6 = Color(0xFFABB9C2)
@@ -33,4 +37,6 @@ val ProfileBoxBannerBorder = Color(0xFFFFE79A)
 val ProfileBoxBannerText = Color(0xFF403101)
 
 val LightGreen = Color(0xFFDCF2D8)
-
+val SettingsIconBackground = Color(0xFFF4F4F6)
+val LogOutRed = Color(0xFFDC3545)
+val BackgroundColor = Color(0xFFFFFFFF)

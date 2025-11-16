@@ -5,6 +5,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import com.example.amgad.R
 
-val Alexandria = FontFamily(
+val     Alexandria = FontFamily(
     Font(R.font.alexandria_regular, weight = FontWeight.Normal),
 )

@@ -1,8 +1,6 @@
 package com.example.amgad.ui.theme
 
-import android.text.style.BackgroundColorSpan
 import androidx.compose.ui.graphics.Color
-import okhttp3.internal.http2.Settings
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
@@ -40,3 +38,17 @@ val LightGreen = Color(0xFFDCF2D8)
 val SettingsIconBackground = Color(0xFFF4F4F6)
 val LogOutRed = Color(0xFFDC3545)
 val BackgroundColor = Color(0xFFFFFFFF)
+val CalendarDayBorder = Color(0xFFDDD5B9)
+val CalendarDayBorderSelected = Color(0xFFFFCC29)
+val CalendarDayBackgroundSelected = Color(0xFFFFF6D9)
+val CalendarDayText = Color(0xFF9E9781)
+val CalendarDayTextNum = Color(0xFF8C6B02)
+val TimeCard = Color(0xFFFFEFEE)
+val TimeCardBorder = Color(0xFFFCE8E6)
+val TimeCardText = Color(0xFFCC3E30)
+
+val PermeationCard = Color(0xFFECF5EC)
+val PermeationCardText   = Color(0xFF2E7D32)
+val RecordCard = Color(0xFFF8F8F9)
+val RecordCardText = Color(0xFF999AAB)
+

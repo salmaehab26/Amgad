@@ -1,7 +1,6 @@
-package com.example.amgad.ui.compose
+package com.example.amgad.ui.compose.MainScreen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,12 +8,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.amgad.R
@@ -26,7 +23,7 @@ import com.example.amgad.ui.theme.YankeesBlue
 fun AlertDialogContent(onDismiss: () -> Unit) {
     Surface(
         shape = RoundedCornerShape(16.dp),
-        color = Color.White,
+        color = White,
         modifier = Modifier
             .width(380.dp)
             .wrapContentHeight()
@@ -81,7 +78,7 @@ fun AlertDialogContent(onDismiss: () -> Unit) {
                     fontSize = 18.sp,
                     fontFamily = Alexandria,
                     fontWeight = FontWeight.SemiBold,
-                    color = Color.White
+                    color = White
                 )
             }
 

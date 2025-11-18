@@ -26,10 +26,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -47,8 +45,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.amgad.R
+import com.example.amgad.ui.compose.MainScreen.PersonalityDialog
+import com.example.amgad.ui.compose.MainScreen.PersonlityTest
 import com.example.amgad.ui.theme.Alexandria
-import com.example.amgad.ui.theme.BackgroundColor
 import com.example.amgad.ui.theme.CompanyColor
 import com.example.amgad.ui.theme.GrayBodyTextColor
 import com.example.amgad.ui.theme.LogOutRed
@@ -107,8 +106,8 @@ fun ProfileSettingsScreen() {
 
             Spacer(modifier = Modifier.height(24.dp))
         }
-        PersonalityDialog(
-            openDialog = openDialog, onDismiss = { openDialog = false })
+    PersonalityDialog(
+        openDialog = openDialog, onDismiss = { openDialog = false })
     }
 
 

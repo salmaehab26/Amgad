@@ -1,4 +1,4 @@
-package com.example.amgad.ui.compose
+package com.example.amgad.ui.compose.MainScreen
 
 import android.os.Build
 import android.os.Bundle
@@ -11,7 +11,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -25,21 +24,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
-import com.example.amgad.R
-import com.example.amgad.ui.theme.Alexandria
+import com.example.amgad.ui.compose.HRRequestScreen
+import com.example.amgad.ui.compose.ProfileSettingsScreen
 import com.example.amgad.ui.theme.CompanyColor
-import com.example.amgad.ui.theme.YankeesBlue
 import com.example.app.ui.navigation.bottomTabs
 import com.example.attendance.AttendanceScreen
+import com.example.documentattachment.DocumentAttachmentScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -95,8 +91,8 @@ fun MainRoot() {
 
                 composable("offers") { ProfileSettingsScreen() }
                 composable("vendors") { AttendanceScreen() }
-                composable("news") { Screen("News Screen") }
-                composable("consultant") { Screen("Profile Screen") }
+                composable("news") { DocumentAttachmentScreen() }
+                composable("consultant") { HRRequestScreen() }
             }
             PersonalityDialog(
                 openDialog = openDialog,

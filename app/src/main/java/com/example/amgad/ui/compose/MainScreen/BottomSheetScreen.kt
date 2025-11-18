@@ -1,4 +1,4 @@
-package com.example.amgad.ui.compose
+package com.example.amgad.ui.compose.MainScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,13 +23,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.amgad.R
 import com.example.amgad.ui.theme.Alexandria
-import com.example.amgad.ui.theme.CompanyColor
 import com.example.amgad.ui.theme.SheetHeader
 import com.example.amgad.ui.theme.YankeesBlue
 

@@ -1,4 +1,4 @@
-package com.example.amgad.ui.compose
+package com.example.amgad.ui.compose.MainScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

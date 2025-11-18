@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Amgad">
         <activity
-            android:name=".ui.compose.MainActivity"
+            android:name=".ui.compose.MainScreen.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Amgad">

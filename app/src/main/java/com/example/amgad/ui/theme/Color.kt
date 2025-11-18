@@ -22,8 +22,6 @@ val AssessmentCardGrayText = Color(0xFF828398)
 val HrRequestBox1 = Color(0xFFF5A158)
 val HrRequestBox2 = Color(0xFFE7636F)
 val HrRequestBox3 = Color(0xFF679CC8)
-
-
 val HrRequestBox4 = Color(0xFF5CBC6C)
 val HrRequestBox5 = Color(0xFF7961AC)
 val HrRequestBox6 = Color(0xFFABB9C2)
@@ -46,9 +44,32 @@ val CalendarDayTextNum = Color(0xFF8C6B02)
 val TimeCard = Color(0xFFFFEFEE)
 val TimeCardBorder = Color(0xFFFCE8E6)
 val TimeCardText = Color(0xFFCC3E30)
-
 val PermeationCard = Color(0xFFECF5EC)
-val PermeationCardText   = Color(0xFF2E7D32)
+val PermeationCardText = Color(0xFF2E7D32)
 val RecordCard = Color(0xFFF8F8F9)
 val RecordCardText = Color(0xFF999AAB)
+val UploadCardBackground = Color(0xFFFAFBFB)
+val UploadCardBorder = Color(0xFFC6C7D0)
+val UploadCardText = Color(0xFF8E8FA2)
 
+val TextFieldFilled = Color(0xFFF4F4F6)
+val UploadAttachmentCardText = Color(0xFF303254)
+val UploadAttachmentButton = Color(0xFF178D32)
+val HrRequestTabBackground = Color(0xFFF1F2F4)
+
+val HrRequestProfileBorder = Color(0xFFFFC303)
+val HrEquipmentBorder = Color(0xFFF7E0EA)
+val HrEquipmentBackground = Color(0xFFF6EDF1)
+val HrEquipmentText = Color(0xFF3F182A)
+val HrTimeBorder = Color(0xFFEDEDF0)
+
+val HrWeHearYouBorder = Color(0xFFF6F3E4)
+val HrUserBackground = Color(0xFFF4F4F6)
+val HrUserBorder = Color(0xFFECECF2)
+val HrWeHearYouBackground = Color(0xFFF0FAFA)
+
+
+val HrDocumentBorder = Color(0xFFDAF3F3)
+val HrDocumentBackground = Color(0xFFFFC303)
+val HrLeaveBorder = Color(0xFFE2EDF6)
+val HrLeaveDayBackground = Color(0xFFEAF3F9)

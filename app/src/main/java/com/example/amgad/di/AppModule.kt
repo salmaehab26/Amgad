@@ -3,12 +3,14 @@ package com.example.amgad.di
 import com.example.amgad.data.datasource.DummyHomeDataSource
 import com.example.amgad.data.repository.HomeRepositoryImpl
 import com.example.amgad.domain.repository.IHomeRepository
+import com.example.amgad.domain.repository.IHrRequestRepository
 import com.example.amgad.domain.useCase.GetAssessmentsUseCase
 import com.example.amgad.domain.useCase.GetHrRequestsUseCase
 import com.example.amgad.domain.useCase.GetMostUsedOffersUseCase
 import com.example.amgad.domain.useCase.GetNewsUseCase
 import com.example.amgad.domain.useCase.GetOffersUseCase
 import com.example.amgad.domain.useCase.GetSliderImagesUseCase
+import com.example.amgad.domain.useCase.HrRequestUseCase.GetHrRequestItemUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -61,4 +63,8 @@ object AppModule {
     @Singleton
     fun provideGetMostUsedOffersUseCase(repository: IHomeRepository): GetMostUsedOffersUseCase =
         GetMostUsedOffersUseCase(repository)
+    @Provides
+    @Singleton
+    fun provideGetHrRequestItemsUseCase(repository: IHrRequestRepository): GetHrRequestItemUseCase =
+        GetHrRequestItemUseCase(repository)
 }

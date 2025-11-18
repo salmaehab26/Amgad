@@ -1,13 +1,9 @@
-package com.example.amgad.ui.viewModel
+package com.example.amgad.ui.viewModel.HomeViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.amgad.domain.model.AssessmentModel
-import com.example.amgad.domain.model.HrRequestModel
-import com.example.amgad.domain.model.ImageSliderModel
 import com.example.amgad.domain.useCase.GetAssessmentsUseCase
-import com.example.amgad.domain.useCase.GetHrRequestsUseCase
-import com.example.amgad.domain.useCase.GetSliderImagesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

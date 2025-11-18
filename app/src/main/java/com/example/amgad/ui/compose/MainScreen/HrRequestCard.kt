@@ -36,7 +36,7 @@ import com.example.amgad.R
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.HrRequestCardBorder
 import com.example.amgad.domain.model.HrRequestModel
-import com.example.amgad.ui.viewModel.HrRequestViewModel
+import com.example.amgad.ui.viewModel.HomeViewModel.HrRequestViewModel
 
 @Composable
 fun HrRequestCard(viewModel: HrRequestViewModel= hiltViewModel()) {

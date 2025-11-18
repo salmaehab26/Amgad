@@ -1,6 +1,6 @@
 package com.example.amgad.ui.compose.MainScreen
 
-import com.example.amgad.ui.viewModel.SliderViewModel
+import com.example.amgad.ui.viewModel.HomeViewModel.SliderViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row

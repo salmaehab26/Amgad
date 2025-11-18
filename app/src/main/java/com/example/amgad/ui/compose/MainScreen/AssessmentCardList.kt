@@ -40,7 +40,7 @@ import com.example.amgad.R
 import com.example.amgad.domain.model.AssessmentModel
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.AssessmentCardGrayText
-import com.example.amgad.ui.viewModel.AssessmentsViewModel
+import com.example.amgad.ui.viewModel.HomeViewModel.AssessmentsViewModel
 
 @Composable
 fun AssessmentCard(viewModel: AssessmentsViewModel= hiltViewModel()) {

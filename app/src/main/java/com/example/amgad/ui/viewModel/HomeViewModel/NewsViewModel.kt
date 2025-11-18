@@ -1,11 +1,9 @@
-package com.example.amgad.ui.viewModel
+package com.example.amgad.ui.viewModel.HomeViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.amgad.domain.model.NewsCardModel
-import com.example.amgad.domain.model.OfferCategoryModel
 import com.example.amgad.domain.useCase.GetNewsUseCase
-import com.example.amgad.domain.useCase.GetOffersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

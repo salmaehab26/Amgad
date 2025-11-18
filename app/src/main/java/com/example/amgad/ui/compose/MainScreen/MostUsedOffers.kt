@@ -47,7 +47,7 @@ import com.example.amgad.domain.model.MostUsedOfferModel
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.GrayBodyTextColor
 import com.example.amgad.ui.theme.YankeesBlue
-import com.example.amgad.ui.viewModel.MostUsedOfferViewModel
+import com.example.amgad.ui.viewModel.HomeViewModel.MostUsedOfferViewModel
 
 @Composable
 fun MostUsedOffersPart(mostUsedOffersViewModel: MostUsedOfferViewModel = hiltViewModel()) {

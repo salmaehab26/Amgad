@@ -1,4 +1,4 @@
-package com.example.amgad.ui.viewModel
+package com.example.amgad.ui.viewModel.HomeViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

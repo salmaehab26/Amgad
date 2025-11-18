@@ -43,7 +43,7 @@ import com.example.amgad.domain.model.NewsCardModel
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.GrayBodyTextColor
 import com.example.amgad.ui.theme.YankeesBlue
-import com.example.amgad.ui.viewModel.NewsViewModel
+import com.example.amgad.ui.viewModel.HomeViewModel.NewsViewModel
 @Preview
 @Composable
 fun NewsCardPart(newsViewModel: NewsViewModel = hiltViewModel()) {

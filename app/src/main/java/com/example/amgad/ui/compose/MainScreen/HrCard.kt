@@ -2,6 +2,7 @@ package com.example.amgad.ui.compose.MainScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -34,9 +35,8 @@ import com.example.amgad.ui.theme.Gray
 import com.example.amgad.ui.theme.HrCardTextColor
 import com.example.amgad.ui.theme.YellowBorder
 
-@Preview(showBackground = true)
 @Composable
-fun HrCard() {
+fun HrCard(onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(20.dp)
@@ -63,7 +63,7 @@ fun HrCard() {
                 horizontalAlignment = Alignment.End,
                 modifier = Modifier
                     .weight(1f)
-                    .padding(end = 15.dp, top = 8.dp)
+                    .padding(end = 15.dp, top = 8.dp).clickable(onClick=onClick)
             ) {
                 Text(
                     "غير مسموح بتسجيل الحضور عبر هذا الجوال لأنه لم يتم تسجيله بعد لدى إدارة الموارد البشرية",

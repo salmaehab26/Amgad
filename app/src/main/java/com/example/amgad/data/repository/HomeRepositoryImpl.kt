@@ -1,12 +1,12 @@
 package com.example.amgad.data.repository
 
-import com.example.amgad.data.datasource.DummyHomeDataSource
-import com.example.amgad.domain.model.AssessmentModel
-import com.example.amgad.domain.model.HrRequestModel
-import com.example.amgad.domain.model.ImageSliderModel
-import com.example.amgad.domain.model.MostUsedOfferModel
-import com.example.amgad.domain.model.NewsCardModel
-import com.example.amgad.domain.model.OfferCategoryModel
+import com.example.amgad.data.data_source.DummyHomeDataSource
+import com.example.amgad.domain.model.MainModle.AssessmentModel
+import com.example.amgad.domain.model.MainModle.HrRequestModel
+import com.example.amgad.domain.model.MainModle.ImageSliderModel
+import com.example.amgad.domain.model.MainModle.MostUsedOfferModel
+import com.example.amgad.domain.model.MainModle.NewsCardModel
+import com.example.amgad.domain.model.MainModle.OfferCategoryModel
 import com.example.amgad.domain.repository.IHomeRepository
 import javax.inject.Inject
 

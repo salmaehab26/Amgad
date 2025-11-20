@@ -39,7 +39,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.amgad.domain.model.NewsCardModel
+import com.example.amgad.domain.model.MainModle.NewsCardModel
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.GrayBodyTextColor
 import com.example.amgad.ui.theme.YankeesBlue

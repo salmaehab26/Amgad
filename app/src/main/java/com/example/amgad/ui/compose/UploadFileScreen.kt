@@ -22,23 +22,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -73,10 +64,9 @@ import com.example.amgad.ui.theme.UploadCardBorder
 import com.example.amgad.ui.theme.UploadCardText
 import com.example.amgad.ui.theme.YankeesBlue
 
-@Preview(showBackground = true)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DocumentAttachmentScreen() {
+fun DocumentAttachmentScreen(onNavigateBack: () -> Unit) {
     var noteText by remember { mutableStateOf("") }
     var selectedFileName by remember { mutableStateOf<String?>(null) }
     var selectedFileSize by remember { mutableStateOf<String?>(null) }
@@ -99,7 +89,7 @@ fun DocumentAttachmentScreen() {
             Image(
                painter = painterResource(id=R.drawable.ic_close_black) ,
                 contentDescription = "Close",
-                Modifier.size(24.dp))
+                Modifier.size(24.dp).clickable(onClick = onNavigateBack))
 
 
         }
@@ -323,12 +313,12 @@ fun DocumentAttachmentScreen() {
 }
 
 
-@Composable
-fun DocumentAttachmentApp() {
-    MaterialTheme {
-        DocumentAttachmentScreen()
-    }
-}
+//@Composable
+//fun DocumentAttachmentApp() {
+//    MaterialTheme {
+//        DocumentAttachmentScreen()
+//    }
+//}
 
 @Composable
 fun FileContainer(

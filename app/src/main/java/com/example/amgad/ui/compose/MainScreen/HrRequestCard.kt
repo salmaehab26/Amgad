@@ -35,7 +35,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.amgad.R
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.HrRequestCardBorder
-import com.example.amgad.domain.model.HrRequestModel
+import com.example.amgad.domain.model.MainModle.HrRequestModel
 import com.example.amgad.ui.viewModel.HomeViewModel.HrRequestViewModel
 
 @Composable

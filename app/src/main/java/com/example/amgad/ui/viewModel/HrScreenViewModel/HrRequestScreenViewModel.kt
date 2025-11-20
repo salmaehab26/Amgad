@@ -1,30 +1,42 @@
 package com.example.amgad.ui.viewModel.HrScreenViewModel
 
+import com.example.amgad.domain.model.HrRequestModel.RequestStatus
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.amgad.domain.model.HrRequestItemsScreenModel
-
+import com.example.amgad.domain.model.HrRequestModel.HrRequestItemsScreenModel
 import com.example.amgad.domain.useCase.HrRequestUseCase.GetHrRequestItemUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class HrRequestScreenViewModel @Inject constructor(
-    private val getHrRequestsUseCase: GetHrRequestItemUseCase
+    private val getHrRequestItemUseCase: GetHrRequestItemUseCase
 ) : ViewModel() {
+
     private val _items = MutableStateFlow<List<HrRequestItemsScreenModel>>(emptyList())
-    val offers: StateFlow<List<HrRequestItemsScreenModel>> = _items
+    val items: StateFlow<List<HrRequestItemsScreenModel>> = _items.asStateFlow()
+
+    private val _selectedStatus = MutableStateFlow(RequestStatus.PENDING)
+    val selectedStatus: StateFlow<RequestStatus> = _selectedStatus.asStateFlow()
+
+    val filteredItems: StateFlow<List<HrRequestItemsScreenModel>> = combine(_items, _selectedStatus) { items, status ->
+        items.filter { it.status == status }
+    }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     init {
-        loadAll()
+        loadItems()
     }
 
-    private fun loadAll() {
+    private fun loadItems() {
         viewModelScope.launch {
-            _items.value = getHrRequestsUseCase()
+            val data = getHrRequestItemUseCase()
+            _items.value = data
         }
     }
-}
 
+    fun onStatusSelected(status: RequestStatus) {
+        _selectedStatus.value = status
+    }
+}

@@ -2,6 +2,7 @@ package com.example.amgad.ui.compose.MainScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,20 +44,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.amgad.R
-import com.example.amgad.domain.model.MostUsedOfferModel
+import com.example.amgad.domain.model.MainModle.MostUsedOfferModel
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.GrayBodyTextColor
 import com.example.amgad.ui.theme.YankeesBlue
 import com.example.amgad.ui.viewModel.HomeViewModel.MostUsedOfferViewModel
 
 @Composable
-fun MostUsedOffersPart(mostUsedOffersViewModel: MostUsedOfferViewModel = hiltViewModel()) {
+fun MostUsedOffersPart(mostUsedOffersViewModel: MostUsedOfferViewModel = hiltViewModel(), navigatDocumentAtachement: () -> Unit) {
     val items by mostUsedOffersViewModel.offers.collectAsState()
 
-    MostUsedOffers(items)
+    MostUsedOffers(items,navigatDocumentAtachement)
 }
 @Composable
-fun MostUsedOffers(offers: List<MostUsedOfferModel>) {
+fun MostUsedOffers(offers: List<MostUsedOfferModel>, navigatDocumentAtachement: () -> Unit) {
 
 
     Column(
@@ -72,7 +73,7 @@ fun MostUsedOffers(offers: List<MostUsedOfferModel>) {
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = YankeesBlue,
-                fontFamily = Alexandria
+                fontFamily = Alexandria, modifier =  Modifier.clickable(onClick = navigatDocumentAtachement)
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_trending),

@@ -1,7 +1,7 @@
 package com.example.amgad.data.repository
 
-import com.example.amgad.data.dataSource.DummyHrRequestDataSource
-import com.example.amgad.domain.model.HrRequestItemsScreenModel
+import com.example.amgad.data.data_source.DummyHrRequestDataSource
+import com.example.amgad.domain.model.HrRequestModel.HrRequestItemsScreenModel
 import com.example.amgad.domain.repository.IHrRequestRepository
 import javax.inject.Inject
 

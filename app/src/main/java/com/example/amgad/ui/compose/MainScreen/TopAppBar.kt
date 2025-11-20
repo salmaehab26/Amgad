@@ -2,6 +2,7 @@ package com.example.amgad.ui.compose.MainScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,9 +32,8 @@ import androidx.compose.ui.unit.sp
 import com.example.amgad.R
 import com.example.amgad.ui.theme.Alexandria
 
-@Preview
 @Composable
-fun TopAppbar() {
+fun TopAppbar(navigatProfile: () -> Unit, navigatAttendence: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -45,7 +45,7 @@ fun TopAppbar() {
         Spacer(modifier = Modifier.weight(1f))
 
         StartPartOfTopBar()
-        ProfileWithNotificationIcon()
+        ProfileWithNotificationIcon(navigatProfile)
 
 
 
@@ -54,11 +54,10 @@ fun TopAppbar() {
 
 }
 
-@Preview(showBackground = true)
 @Composable
-fun ProfileWithNotificationIcon() {
+fun ProfileWithNotificationIcon(navigatProfile: () -> Unit) {
     Box(
-        modifier = Modifier.size(55.dp).padding(end = 10.dp),
+        modifier = Modifier.size(55.dp).padding(end = 10.dp).clickable { navigatProfile() },
         contentAlignment = Alignment.Center
     ) {
         Box(

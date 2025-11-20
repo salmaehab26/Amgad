@@ -1,6 +1,6 @@
 package com.example.amgad.domain.useCase
 
-import com.example.amgad.domain.model.ImageSliderModel
+import com.example.amgad.domain.model.MainModle.ImageSliderModel
 import com.example.amgad.domain.repository.IHomeRepository
 import javax.inject.Inject
 

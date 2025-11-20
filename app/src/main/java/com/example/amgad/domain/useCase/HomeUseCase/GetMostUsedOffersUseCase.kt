@@ -1,8 +1,7 @@
 package com.example.amgad.domain.useCase
 
 
-import com.example.amgad.domain.model.MostUsedOfferModel
-import com.example.amgad.domain.model.NewsCardModel
+import com.example.amgad.domain.model.MainModle.MostUsedOfferModel
 import com.example.amgad.domain.repository.IHomeRepository
 import javax.inject.Inject
 

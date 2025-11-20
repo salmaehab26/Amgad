@@ -33,9 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.amgad.R
-import com.example.amgad.domain.model.NewsCardModel
-import com.example.amgad.domain.model.TabItemModel
+import com.example.amgad.domain.model.MainModle.TabItemModel
 import com.example.amgad.ui.theme.Alexandria
 
 @Preview

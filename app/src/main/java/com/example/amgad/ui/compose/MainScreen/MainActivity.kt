@@ -30,14 +30,20 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
-import com.example.amgad.ui.compose.HRRequestScreen
-import com.example.amgad.ui.compose.ProfileSettingsScreen
+import androidx.navigation.toRoute
+import com.example.amgad.domain.model.MyLibraryModel.ItemType
+import com.example.amgad.ui.compose.HrRequestScreen.HRRequestScreen
+import com.example.amgad.ui.compose.MediaPlayerScreen
+import com.example.amgad.ui.compose.MyLibraryScreen.MyLibraryScreen
+import com.example.amgad.ui.compose.OrderDetailsScreen
+import com.example.amgad.ui.compose.ProfileScreen.ProfileSettingsScreen
 import com.example.amgad.ui.theme.CompanyColor
 import com.example.app.ui.navigation.bottomTabs
 import com.example.attendance.AttendanceScreen
 import com.example.documentattachment.DocumentAttachmentScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -78,21 +84,98 @@ fun MainRoot() {
 
             NavHost(
                 navController = navController,
-                startDestination = "home",
+                startDestination =Screens.HomeScreen,
                 modifier = Modifier.padding(innerPadding)
             ) {
 
-                composable("home") {
+                composable<Screens.HomeScreen> {
                     HomeScreen(
                         onCardClick = {
                             scope.launch { sheetState.show() }
-                        }, onPersonalityClick = { openDialog = true })
+                        }, onPersonalityClick = { openDialog = true },
+                        navigatProfile = {
+                            navController.navigate(Screens.ProfileScreen)
+                        }, navigatAttendence = {
+                            navController.navigate(Screens.AttendanceScreen)
+                        }, navigatHrRequest = {
+                            navController.navigate(Screens.HrRequestScreen)
+                        }, navigatDocumentAtachement = {
+                            navController.navigate(Screens.DocumentAttachmentScreen)
+                        }, navigatMyLibrary = {
+                            navController.navigate(Screens.MyLibraryScreen)
+                        })
+                }
+                composable<Screens.Tab2> { Screen("screen 2") }
+                composable<Screens.Tab3> { Screen("screen 3") }
+                composable<Screens.Tab4> { Screen("screen 4") }
+                composable<Screens.Tab5> { Screen("screen 5") }
+
+                composable<Screens.ProfileScreen> { ProfileSettingsScreen(onNavigateBack={navController.popBackStack()}) }
+                composable<Screens.AttendanceScreen> { AttendanceScreen(onNavigateBack={navController.popBackStack()}) }
+                composable<Screens.DocumentAttachmentScreen>{ DocumentAttachmentScreen(onNavigateBack={navController.popBackStack()}) }
+                composable<Screens.HrRequestScreen> {
+                    HRRequestScreen(
+                        onNavigateBack = { navController.popBackStack() },
+                        onNavigateToDetails = { item ->
+                            navController.navigate(
+                                Screens.HrRequestDetailsScreen(
+                                    requestId = item.id,
+                                    name = item.name,
+                                    time = item.time,
+                                    typeTitle = item.type.title,
+                                    statusName = item.status.name,
+                                    TitleColor = item.type.titleColor,
+                                    backgroundColor = item.type.backgroundColor,
+                                    borderColor = item.type.borderColor,
+
+                                    )
+                            )
+                        }
+                    )
+                }
+                composable<Screens.HrRequestDetailsScreen> { backStackEntry ->
+                    val args = backStackEntry.toRoute<Screens.HrRequestDetailsScreen>()
+                    OrderDetailsScreen(
+                        name = args.name,
+                        time = args.time,
+                        typeTitle = args.typeTitle,
+                        statusName = args.statusName,
+                        TitleColor=args.TitleColor,
+                        backgroundColor=args.backgroundColor,
+                        borderColor=args.borderColor,
+                        onNavigateBack = { navController.popBackStack() }
+                    )
+                }
+                composable<Screens.MyLibraryScreen> {
+                    MyLibraryScreen(
+                        onNavigateBack = { navController.popBackStack() },
+                        onNavigateToMediaPlayer = { item ->
+                            navController.navigate(
+                                Screens.MediaPlayerScreen(
+                                    title = item.title,
+                                    description = item.description,
+                                    mediaUrl = item.videoUrl ,
+                                    mediaType = when (item.type) {
+                                        ItemType.Video -> "video"
+                                        ItemType.Audio -> "audio"
+                                        ItemType.Article -> "article"
+                                    }
+                                )
+                            )
+                        }
+                    )
                 }
 
-                composable("offers") { ProfileSettingsScreen() }
-                composable("vendors") { AttendanceScreen() }
-                composable("news") { DocumentAttachmentScreen() }
-                composable("consultant") { HRRequestScreen() }
+                composable<Screens.MediaPlayerScreen> { backStackEntry ->
+                    val args = backStackEntry.toRoute<Screens.MediaPlayerScreen>()
+                    MediaPlayerScreen(
+                        title = args.title,
+                        description = args.description,
+                        mediaUrl = args.mediaUrl,
+                        mediaType = args.mediaType,
+                        onNavigateBack = { navController.popBackStack() }
+                    )
+                }
             }
             PersonalityDialog(
                 openDialog = openDialog,
@@ -104,30 +187,46 @@ fun MainRoot() {
 
 
 @Composable
-fun HomeScreen(onCardClick: () -> Unit, onPersonalityClick: () -> Unit) {
+fun HomeScreen(
+    onCardClick: () -> Unit,
+    onPersonalityClick: () -> Unit,
+    navigatProfile: () -> Unit,
+    navigatAttendence: () -> Unit,
+    navigatHrRequest: () -> Unit,
+    navigatMyLibrary: () -> Unit,
+    navigatDocumentAtachement: () -> Unit
+) {
     val scrollState = rememberScrollState()
 
     Column(
         modifier = Modifier.verticalScroll(scrollState)
 
     ) {
-        TopAppbar()
+        TopAppbar(navigatProfile, navigatAttendence)
         ImageSliderCard()
-        HrCard()
+        HrCard(navigatHrRequest)
         HrRequestCard()
         AmjadConsultantCard(onClick = onCardClick)
         PersonlityTest(onClick = onPersonalityClick)
         AssessmentCard()
         SurveysTabs()
-        OffersCategoryPart()
-        MostUsedOffersPart()
+        OffersCategoryPart(
+            navigatMyLibrary =navigatMyLibrary
+        )
+        MostUsedOffersPart(navigatDocumentAtachement=navigatDocumentAtachement)
 
     }
 }
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
-
+    val bottomTabRoutes = listOf(
+        Screens.HomeScreen,
+        Screens.Tab2,
+        Screens.Tab3,
+        Screens.Tab4,
+        Screens.Tab5
+    )
     val currentDestination = navController.currentBackStackEntryAsState().value?.destination
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
 
@@ -139,10 +238,9 @@ fun BottomNavigationBar(navController: NavHostController) {
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.Top
         ) {
-            bottomTabs.forEach { tab ->
-
-                val selected = currentDestination?.route == tab.route
-
+            bottomTabs.forEachIndexed { index, tab ->
+                val tabRoute = bottomTabRoutes.getOrNull(index)
+                val selected = currentDestination?.route == tabRoute?.let { it::class.qualifiedName }
                 Column(
                     modifier = Modifier
                         .fillMaxHeight()
@@ -152,9 +250,14 @@ fun BottomNavigationBar(navController: NavHostController) {
                             else Color.Transparent
                         )
                         .clickable {
-                            navController.navigate(tab.route) {
-                                popUpTo(bottomTabs.first().route) { inclusive = false }
-                                launchSingleTop = true
+                            tabRoute?.let {
+                                navController.navigate(it) {
+                                    popUpTo(Screens.HomeScreen) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
                             }
                         },
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -214,12 +317,54 @@ fun PersonalityDialog(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f)), 
-            contentAlignment = Alignment.Center 
+                .background(Color.Black.copy(alpha = 0.5f)),
+            contentAlignment = Alignment.Center
         ) {
             AlertDialogContent(onDismiss = onDismiss)
         }
     }
+}
+sealed interface Screens{
+    @Serializable
+    data object HomeScreen: Screens
+    @Serializable
+    data object ProfileScreen: Screens
+    @Serializable
+    data object AttendanceScreen: Screens
+    @Serializable
+    data object DocumentAttachmentScreen: Screens
+    @Serializable
+    data object HrRequestScreen: Screens
+    @Serializable
+    data class HrRequestDetailsScreen(
+        val requestId: String,
+        val name: String,
+        val time: String,
+        val typeTitle: String,
+        val statusName: String,
+        val TitleColor: Long,
+        val backgroundColor: Long,
+        val borderColor: Long
+    ) : Screens
+
+    @Serializable
+    data object Tab2: Screens
+    @Serializable
+    data object Tab3: Screens
+    @Serializable
+    data object Tab4: Screens
+    @Serializable
+    data object Tab5: Screens
+    @Serializable
+    data object MyLibraryScreen: Screens
+    @Serializable
+    data class MediaPlayerScreen(
+        val title: String,
+        val description: String?,
+        val mediaUrl: Int?,
+        val mediaType: String // "video", "audio", "article"
+    ) : Screens
+
 }
 
 

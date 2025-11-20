@@ -1,4 +1,4 @@
-package com.example.amgad.domain.model
+package com.example.amgad.domain.model.MainModle
 
 import androidx.annotation.DrawableRes
 

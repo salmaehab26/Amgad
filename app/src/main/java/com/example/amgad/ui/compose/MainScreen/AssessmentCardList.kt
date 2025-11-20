@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.amgad.R
-import com.example.amgad.domain.model.AssessmentModel
+import com.example.amgad.domain.model.MainModle.AssessmentModel
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.AssessmentCardGrayText
 import com.example.amgad.ui.viewModel.HomeViewModel.AssessmentsViewModel
@@ -53,9 +53,9 @@ fun AssessmentCard(viewModel: AssessmentsViewModel= hiltViewModel()) {
 fun AssessmentCardList(items: List<AssessmentModel>) {
 
     val gradientColors = listOf(
-        listOf(Color(0xFFEF5350), Color(0xFFFF8A80)), // gradient 1
-        listOf(Color(0xFFAB47BC), Color(0xFFE1BEE7)), // gradient 2
-        listOf(Color(0xFF42A5F5), Color(0xFF90CAF9))  // gradient 3
+        listOf(Color(0xFFEF5350), Color(0xFFFF8A80)),
+        listOf(Color(0xFFAB47BC), Color(0xFFE1BEE7)),
+        listOf(Color(0xFF42A5F5), Color(0xFF90CAF9))
     )
 
     LazyRow(
@@ -84,7 +84,6 @@ fun AssessmentCardList(items: List<AssessmentModel>) {
                             )
                     ) {
 
-                        // ======= الجزء العلوي للصورة والعنوان =======
                         Box(
                             modifier = Modifier
                                 .padding(10.dp)
@@ -120,7 +119,6 @@ fun AssessmentCardList(items: List<AssessmentModel>) {
                             }
                         }
 
-                        // ======= الجزء السفلي (الدقائق – الأسئلة) =======
                         Row(
                             modifier = Modifier
                                 .fillMaxSize()

@@ -38,9 +38,15 @@ import com.example.amgad.ui.theme.LogOutRed
 
 import com.example.amgad.ui.theme.YankeesBlue
 
-@Preview(showBackground = true)
 @Composable
-fun OrderDetailsScreen() {
+fun OrderDetailsScreen(name: String,
+                       time: String,
+                       typeTitle: String,
+                       statusName : String,
+                       TitleColor: Long,
+                       backgroundColor: Long,
+                       borderColor: Long,
+                       onNavigateBack: () -> Unit) {
 
     Column(
         modifier = Modifier
@@ -71,7 +77,7 @@ fun OrderDetailsScreen() {
                 modifier = Modifier
                     .height(24.dp)
                     .width(14.dp)
-                    .clickable() {},
+                    .clickable {onNavigateBack},
                 painter = painterResource(R.drawable.ic_back),
                 contentDescription = "رجوع"
             )
@@ -84,15 +90,13 @@ fun OrderDetailsScreen() {
                 )
                 .fillMaxWidth()
                 .height(55.dp)
-                .background(HrEquipmentBackground, shape = RoundedCornerShape(10.dp))
+                .background(Color(backgroundColor), shape = RoundedCornerShape(10.dp))
                 .border(
-                    color = HrEquipmentBorder, width = 1.dp, shape = RoundedCornerShape(10.dp)
+                    color = Color(borderColor), width = 1.dp, shape = RoundedCornerShape(10.dp)
                 ), contentAlignment = Alignment.Center
         ) {
             Text(
-                "طلب عهدة",
-                color = HrEquipmentText,
-                fontFamily = Alexandria,
+                typeTitle, color = Color(TitleColor), fontFamily = Alexandria,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.fillMaxWidth(),
@@ -108,7 +112,7 @@ fun OrderDetailsScreen() {
                     White, shape = RoundedCornerShape(10.dp)
                 )
                 .border(
-                    width = 1.dp, color = HrTimeBorder, shape = RoundedCornerShape(10.dp)
+                    width = 1.dp, color = Color(borderColor), shape = RoundedCornerShape(10.dp)
                 ), verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
@@ -125,7 +129,7 @@ fun OrderDetailsScreen() {
                     fontFamily = Alexandria,
                 )
                 Text(
-                    "1 نوفمبر 2024 - 10:49 ص",
+                    time,
                     fontSize = 11.sp,
                     fontFamily = Alexandria,
                     color = YankeesBlue,
@@ -152,7 +156,7 @@ fun OrderDetailsScreen() {
                     fontFamily = Alexandria,
                 )
                 Text(
-                    "1 نوفمبر 2024 - 2:01 م",
+                    time,
                     fontSize = 11.sp,
                     fontFamily = Alexandria,
                     color = YankeesBlue,
@@ -188,7 +192,7 @@ fun OrderDetailsScreen() {
                     color = GrayBodyTextColor,
                     fontFamily = Alexandria
                 )
-                Text("نورة إبراهيم", fontSize = 16.sp, fontFamily = Alexandria, color = YankeesBlue)
+                Text(name, fontSize = 16.sp, fontFamily = Alexandria, color = YankeesBlue)
             }
             Box(
                 modifier = Modifier
@@ -215,9 +219,9 @@ fun OrderDetailsScreen() {
                 modifier = Modifier
                     .height(32.dp)
                     .width(137.dp)
-                    .background(HrEquipmentBackground, shape = RoundedCornerShape(20.dp))
+                    .background(Color(HrEquipmentBackground), shape = RoundedCornerShape(20.dp))
                     .border(
-                        color = HrEquipmentBorder, width = 1.dp, shape = RoundedCornerShape(20.dp)
+                        color = Color(HrEquipmentBorder), width = 1.dp, shape = RoundedCornerShape(20.dp)
                     ),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center

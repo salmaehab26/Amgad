@@ -42,7 +42,7 @@ fun PersonlityTest(onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(20.dp)
-            .height(150.dp),
+            .height(165.dp),
         colors = CardDefaults.cardColors(
             containerColor = White
         ),
@@ -51,7 +51,7 @@ fun PersonlityTest(onClick: () -> Unit) {
     ) {
         Row(
             modifier = Modifier
-                .padding(10.dp)
+                .padding(horizontal = 18.dp, vertical = 16.dp)
                 .fillMaxWidth()
         ) {
             Image(
@@ -70,7 +70,7 @@ fun PersonlityTest(onClick: () -> Unit) {
                 Text(
                     "اكتشف ذاتك الحقيقية",
                     color = YankeesBlue,
-                    fontSize = 14.sp,
+                    fontSize = 18.sp,
                     fontFamily = Alexandria,
                     fontWeight = FontWeight.Bold
                 )
@@ -82,11 +82,12 @@ fun PersonlityTest(onClick: () -> Unit) {
                     fontFamily = Alexandria,
                     textAlign = TextAlign.End,
                     style = TextStyle(
-                        lineHeight = 15.sp
-                    )
+                        lineHeight = 16.sp,
+                    ),
+                    modifier = Modifier.padding(start = 10.dp)
 
                 )
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(15.dp))
 
                 Button(
                     modifier = Modifier

@@ -1,12 +1,12 @@
-package com.example.amgad.data.datasource
+package com.example.amgad.data.data_source
 
 import com.example.amgad.R
-import com.example.amgad.domain.model.AssessmentModel
-import com.example.amgad.domain.model.HrRequestModel
-import com.example.amgad.domain.model.ImageSliderModel
-import com.example.amgad.domain.model.MostUsedOfferModel
-import com.example.amgad.domain.model.NewsCardModel
-import com.example.amgad.domain.model.OfferCategoryModel
+import com.example.amgad.domain.model.MainModle.AssessmentModel
+import com.example.amgad.domain.model.MainModle.HrRequestModel
+import com.example.amgad.domain.model.MainModle.ImageSliderModel
+import com.example.amgad.domain.model.MainModle.MostUsedOfferModel
+import com.example.amgad.domain.model.MainModle.NewsCardModel
+import com.example.amgad.domain.model.MainModle.OfferCategoryModel
 import com.example.amgad.ui.theme.HrRequestBox1
 import com.example.amgad.ui.theme.HrRequestBox2
 import com.example.amgad.ui.theme.HrRequestBox3
@@ -19,7 +19,7 @@ import kotlin.collections.listOf
 
 class DummyHomeDataSource {
     suspend fun fetchSliderImages(): List<ImageSliderModel> {
-        delay(300)
+        delay(200)
         return listOf(
             ImageSliderModel(R.drawable.banner1),
             ImageSliderModel(R.drawable.banner),
@@ -28,7 +28,7 @@ class DummyHomeDataSource {
     }
 
     suspend fun fetchHrRequestCardData(): List<HrRequestModel> {
-        delay(300)
+        delay(200)
         return listOf(
             HrRequestModel("سجل حضوري", HrRequestBox1, R.drawable.ic_we_hear_you),
             HrRequestModel("اعتماداتي", HrRequestBox2, R.drawable.ic_we_hear_you),
@@ -46,7 +46,7 @@ class DummyHomeDataSource {
     }
 
     suspend fun fetchAssessments(): List<AssessmentModel> {
-        delay(250)
+        delay(200)
 
         return listOf(
             AssessmentModel(
@@ -155,7 +155,7 @@ class DummyHomeDataSource {
             )
     }
     suspend fun fetchOffersCategory(): List<OfferCategoryModel> {
-        delay(250)
+        delay(200)
 
         return listOf(
             OfferCategoryModel("مطاعم", R.drawable.ic_restaurants),
@@ -169,7 +169,7 @@ class DummyHomeDataSource {
         )
     }
     suspend fun fetchNews(): List<NewsCardModel> {
-        delay(250)
+        delay(200)
 
         return  listOf(
             NewsCardModel(
@@ -183,7 +183,7 @@ class DummyHomeDataSource {
 
 
     suspend fun fetchMostUsedOffers(): List<MostUsedOfferModel> {
-        delay(250)
+        delay(200)
 
         return listOf(
             MostUsedOfferModel(

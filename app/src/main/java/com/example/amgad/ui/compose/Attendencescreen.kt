@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
@@ -28,9 +29,9 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,11 +41,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.toRect
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Paint
-import androidx.compose.ui.graphics.PaintingStyle
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.painterResource
@@ -66,6 +64,8 @@ import com.example.amgad.ui.theme.PermeationCard
 import com.example.amgad.ui.theme.PermeationCardText
 import com.example.amgad.ui.theme.RecordCard
 import com.example.amgad.ui.theme.RecordCardText
+import com.example.amgad.ui.theme.SignInTime
+import com.example.amgad.ui.theme.SignOutTime
 import com.example.amgad.ui.theme.TimeCard
 import com.example.amgad.ui.theme.TimeCardBorder
 import com.example.amgad.ui.theme.TimeCardText
@@ -80,14 +80,16 @@ data class DayData(
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
-@Preview(showBackground = true)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AttendanceScreen() {
+fun AttendanceScreen(onNavigateBack: () -> Unit) {
     var selectedDate by remember { mutableStateOf(LocalDate.now()) }
     val currentMonth = remember { YearMonth.now() }
+    val listState = rememberLazyListState()
 
-    val daysInMonth = remember(currentMonth) {
+
+
+    val daysInMonth = run {
         val daysCount = currentMonth.lengthOfMonth()
         (1..daysCount).map { day ->
             val date = LocalDate.of(currentMonth.year, currentMonth.month, day)
@@ -106,7 +108,12 @@ fun AttendanceScreen() {
         }
     }
 
-
+    LaunchedEffect(Unit) {
+        val todayIndex = LocalDate.now().dayOfMonth - 1
+        listState.scrollToItem(
+            index = todayIndex,
+            scrollOffset = -300
+        )}
     Column(
         modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -116,7 +123,7 @@ fun AttendanceScreen() {
                 .height(250.dp)
                 .clip(
                     RoundedCornerShape(
-                        bottomStart = 40.dp, bottomEnd = 40.dp
+                        bottomStart = 20.dp, bottomEnd = 20.dp
                     )
                 )
                 .background(
@@ -151,7 +158,7 @@ fun AttendanceScreen() {
                         imageVector = Icons.Default.KeyboardArrowRight,
                         contentDescription = "Back",
                         tint = YankeesBlue,
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(24.dp).clickable(onClick = onNavigateBack)
 
                     )
 
@@ -211,6 +218,7 @@ fun AttendanceScreen() {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 LazyRow(
+                    state =listState,
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     contentPadding = PaddingValues(horizontal = 4.dp)
@@ -394,18 +402,42 @@ fun AttendanceScreen() {
                 textAlign = TextAlign.Center
             )
         }
-        Spacer(modifier = Modifier.height(24.dp))
-
+        Spacer(modifier = Modifier.height(60.dp))
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(),
-        ) {
-            TimeCard(
-                label = "وقت الانصراف", time = "4:50 م", timeColor = Color(0xFFD32F2F)
-            )
+
+        ) { Row {
+
+                Text(
+                    "وقت الانصراف",
+                    color = RecordCardText,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier.width(200.dp)
+                )
+            Text(
+                "وقت الانصراف",
+                color = RecordCardText,
+                textAlign = TextAlign.End,
+                modifier = Modifier.width(180.dp)
+            )}
+             Row (   horizontalArrangement = Arrangement.Center,
+                 verticalAlignment = Alignment.CenterVertically,
+                 modifier = Modifier
+                     .padding(horizontal = 16.dp)
+                     .fillMaxWidth()
+                     .height(55.dp)
+                     .background(RecordCard, RoundedCornerShape(12.dp))
+             ){   TimeCard(
+                 time = "م4:50 "
+             )
+                 TimeCard(
+                     time = "م4:50 "
+                 )
+             }}
+
+
+
+
         }
-    }
 
 }
 
@@ -423,7 +455,7 @@ fun DayCard(dayName: String, dayNumber: String, isSelected: Boolean, onClick: ()
             .border(
                 1.dp,
                 if (isSelected) CalendarDayBorderSelected else CalendarDayBorder,
-                RoundedCornerShape(12.dp)
+                RoundedCornerShape(6.dp)
             )
             .padding(vertical = 12.dp)
     ) {
@@ -444,26 +476,16 @@ fun DayCard(dayName: String, dayNumber: String, isSelected: Boolean, onClick: ()
 }
 
 @Composable
-fun TimeCard(label: String, time: String, timeColor: Color) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-            .height(55.dp)
-            .background(RecordCard, RoundedCornerShape(12.dp))
+fun TimeCard(time: String) {
 
-    ) {
         Row(
             modifier = Modifier.fillMaxHeight(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column (horizontalAlignment = Alignment.End){
-                Text("وقت الانصراف", color =RecordCardText )
+            Column(horizontalAlignment = Alignment.End) {
                 Row(
-                    modifier = Modifier.width(175.dp),
+                    modifier = Modifier.width(176.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.End
                 ) {
@@ -476,13 +498,12 @@ fun TimeCard(label: String, time: String, timeColor: Color) {
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        time, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = timeColor
+                        time, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = SignOutTime
                     )
                 }
 
             }
             Column(horizontalAlignment = Alignment.End) {
-                Text("وقت الحضور", color =RecordCardText)
                 Row(
                     modifier = Modifier.width(175.dp),
                     verticalAlignment = Alignment.CenterVertically,
@@ -496,11 +517,10 @@ fun TimeCard(label: String, time: String, timeColor: Color) {
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        time, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = timeColor
+                        time, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = SignInTime
                     )
                 }
             }
         }
 
     }
-}

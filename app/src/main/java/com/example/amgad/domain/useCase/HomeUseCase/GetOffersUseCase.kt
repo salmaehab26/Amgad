@@ -1,7 +1,6 @@
 package com.example.amgad.domain.useCase
 
-import com.example.amgad.domain.model.AssessmentModel
-import com.example.amgad.domain.model.OfferCategoryModel
+import com.example.amgad.domain.model.MainModle.OfferCategoryModel
 import com.example.amgad.domain.repository.IHomeRepository
 import javax.inject.Inject
 

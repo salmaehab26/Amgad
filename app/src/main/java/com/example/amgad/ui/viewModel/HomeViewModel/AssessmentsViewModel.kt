@@ -2,7 +2,7 @@ package com.example.amgad.ui.viewModel.HomeViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.amgad.domain.model.AssessmentModel
+import com.example.amgad.domain.model.MainModle.AssessmentModel
 import com.example.amgad.domain.useCase.GetAssessmentsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

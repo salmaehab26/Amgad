@@ -1,6 +1,6 @@
 package com.example.amgad.domain.repository
 
-import com.example.amgad.domain.model.HrRequestItemsScreenModel
+import com.example.amgad.domain.model.HrRequestModel.HrRequestItemsScreenModel
 
 
 interface IHrRequestRepository {

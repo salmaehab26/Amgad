@@ -77,7 +77,7 @@ fun OrderDetailsScreen(name: String,
                 modifier = Modifier
                     .height(24.dp)
                     .width(14.dp)
-                    .clickable {onNavigateBack},
+                    .clickable (onClick = onNavigateBack),
                 painter = painterResource(R.drawable.ic_back),
                 contentDescription = "رجوع"
             )

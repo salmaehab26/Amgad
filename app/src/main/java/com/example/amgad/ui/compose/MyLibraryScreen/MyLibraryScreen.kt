@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -24,6 +25,7 @@ import com.example.amgad.domain.model.MyLibraryModel.ItemType
 import com.example.amgad.domain.model.MyLibraryModel.MyLibraryModel
 import com.example.amgad.ui.compose.HrRequestScreen.TabsRow
 import com.example.amgad.ui.compose.TopBar
+import com.example.amgad.ui.theme.WhiteBackground
 import com.example.amgad.ui.viewModel.MyLibraryViewModel.MyLibraryViewModel
 
 
@@ -55,14 +57,13 @@ fun MyLibraryScreenPart(
 ) {
 
     val tabs = listOf("مقالات", "ملفات صوتية", "فيديو")
-    var Tab by remember { mutableStateOf(0) }
     val Types = listOf(ItemType.Article, ItemType.Audio, ItemType.Video)
     val selectedTab = Types.indexOf(type).takeIf { it >= 0 } ?: 2
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFF7F5FB))
-            .padding(16.dp),
+           ,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -71,13 +72,13 @@ fun MyLibraryScreenPart(
             showIcon = false
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(20.dp).fillMaxWidth().background(WhiteBackground))
 
         TabsRow(tabs = tabs, selectedTab = selectedTab, onTabSelected = { index ->
             onTypeSelected(Types[index])
         })
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(25.dp))
 
         ItemList(items, onNavigateToMediaPlayer)
 

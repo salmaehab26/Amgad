@@ -16,19 +16,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.CompanyColor
 import com.example.amgad.ui.theme.HrCardTextColor
 import com.example.amgad.ui.theme.HrRequestTabBackground
+import com.example.amgad.ui.theme.WhiteBackground
 
 @Composable
 fun TabsRow(
     tabs: List<String>,
     selectedTab: Int,
     onTabSelected: (Int) -> Unit
-) {
+) {Row(modifier = Modifier.fillMaxWidth().background(WhiteBackground).padding(bottom = 8.dp),horizontalArrangement = Arrangement.Center) {
     Box(
         modifier = Modifier
             .width(290.dp)
@@ -57,10 +59,11 @@ fun TabsRow(
                         text = title,
                         fontFamily = Alexandria,
                         fontSize = 14.sp,
+                        fontWeight = FontWeight.SemiBold,
                         color = if (isSelected) CompanyColor else HrCardTextColor
                     )
                 }
             }
         }
-    }
+    }}
 }

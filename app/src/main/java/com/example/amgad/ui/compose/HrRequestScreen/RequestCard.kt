@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,36 +31,43 @@ import androidx.compose.ui.unit.sp
 import com.example.amgad.R
 import com.example.amgad.domain.model.HrRequestModel.HrRequestItemsScreenModel
 import com.example.amgad.ui.theme.Alexandria
+import com.example.amgad.ui.theme.GrayBodyTextColor
 import com.example.amgad.ui.theme.HrRequestProfileBorder
+import com.example.amgad.ui.theme.WhiteBackground
+import com.example.amgad.ui.theme.YankeesBlue
 
 @Composable
 fun RequestCard(
     item: HrRequestItemsScreenModel,
     onCardClick: () -> Unit
 ) {
-    Box(
+    Card (
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .background(Color.White)
-            .padding(14.dp) .clickable(
+            .padding(14.dp)
+            .clickable(
                 enabled = true,
                 onClick = onCardClick
-            )
+            ), elevation = CardDefaults.cardElevation(
+            defaultElevation = 5.dp
 
-    ) {
-        Column {
+    ), colors = CardDefaults.cardColors(WhiteBackground), ){
+        Column (modifier = Modifier.padding(16.dp)){
 
             Box(
                 modifier = Modifier
-                    .fillMaxWidth().border(1.dp, Color(item.type.borderColor), RoundedCornerShape(12.dp))
-                    .background(color=Color(item.type.backgroundColor) , RoundedCornerShape(12.dp))
+                    .fillMaxWidth()
+                    .height(51.dp)
+                    .border(1.dp, Color(item.type.borderColor), RoundedCornerShape(12.dp))
+                    .background(color = Color(item.type.backgroundColor), RoundedCornerShape(12.dp))
                     .padding(vertical = 14.dp, horizontal = 12.dp)
             ) {
                 Text(
                     text = item.type.title,
                     fontFamily = Alexandria,
                     fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold,
                     color = Color(item.type.titleColor),
                     modifier = Modifier.align(Alignment.Center)
                 )
@@ -84,7 +94,8 @@ fun RequestCard(
                 )
 
                 Image(
-                    painter = painterResource(id = R.drawable.amgad), contentDescription = "Employee",
+                    painter = painterResource(id = R.drawable.amgad),
+                    contentDescription = "Employee",
 
                     modifier = Modifier
                         .size(38.dp)
@@ -98,17 +109,26 @@ fun RequestCard(
             }
 
             Spacer(modifier = Modifier.height(6.dp))
+            Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically){
+                Text(
+                    text = item.time,
+                    fontSize = 11.sp,
+                    fontFamily = Alexandria,
+                    color = YankeesBlue,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier
+                        .padding(top = 4.dp)
+                )
+                Text(
+                    ": تم ارسال الطلب منذ", fontSize = 11.sp,
+                    fontFamily = Alexandria,
+                    color = GrayBodyTextColor,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier
+                        .padding(top = 4.dp)
+                )
 
-            Text(
-                text = item.time,
-                fontSize = 12.sp,
-                fontFamily = Alexandria,
-                color = Color.Gray,
-                textAlign = TextAlign.End,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.dp)
-            )
+             }
         }
     }
 }

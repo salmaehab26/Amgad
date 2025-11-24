@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.amgad.domain.model.HrRequestModel.HrRequestItemsScreenModel
 import com.example.amgad.ui.compose.TopBar
+import com.example.amgad.ui.theme.WhiteBackground
 import com.example.amgad.ui.viewModel.HrScreenViewModel.HrRequestScreenViewModel
 
 @Composable
@@ -62,8 +64,7 @@ fun HRRequestScreenPart(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF7F5FB))
-            .padding(16.dp),
+            .background(Color(0xFFF7F5FB)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -71,7 +72,7 @@ fun HRRequestScreenPart(
             showIcon = true
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(16.dp).fillMaxWidth().background(WhiteBackground))
 
         TabsRow(tabs = tabs, selectedTab = selectedTab, onTabSelected = { index ->
             onStatusSelected(statuses[index])
@@ -85,18 +86,6 @@ fun HRRequestScreenPart(
 
 
 
-@Composable
-fun RequestList(
-    items: List<HrRequestItemsScreenModel>,
-    onNavigateToDetails: (HrRequestItemsScreenModel) -> Unit
-) {
-    LazyColumn {
-        items(items) { item ->
-            RequestCard(item, onCardClick ={onNavigateToDetails(item)} )
-            Spacer(modifier = Modifier.height(16.dp))
-        }
-    }
-}
 
 
 @Preview(showBackground = true)

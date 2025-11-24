@@ -80,3 +80,4 @@ val HrRemoteText = 0xFF20411B
 val SignOutTime = Color(0xFF8C252F)
 val SignInTime = Color(0xFF2F8B8B)
 val AudiioScreenBackground=Color(0xFF878787)
+val MonthStatsSectionText=Color(0xFFD9A603)

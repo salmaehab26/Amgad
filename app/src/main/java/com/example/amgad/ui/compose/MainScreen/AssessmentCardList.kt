@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -60,7 +61,9 @@ fun AssessmentCardList(items: List<AssessmentModel>) {
 
     LazyRow(
         reverseLayout = true,
-        horizontalArrangement = Arrangement.spacedBy(5.dp),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp)
+
     ) {
         itemsIndexed(items) { index, item ->
 
@@ -73,7 +76,7 @@ fun AssessmentCardList(items: List<AssessmentModel>) {
                     modifier = Modifier
                         .height(170.dp)
                         .width(170.dp)
-                        .padding(end = 10.dp)
+
                 ) {
                     Column(
                         modifier = Modifier
@@ -109,6 +112,7 @@ fun AssessmentCardList(items: List<AssessmentModel>) {
                                     fontFamily = Alexandria,
                                     fontSize = 13.sp
                                 )
+                                Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = item.title,
                                     fontFamily = Alexandria,
@@ -146,7 +150,7 @@ fun AssessmentCardList(items: List<AssessmentModel>) {
                                 modifier = Modifier.size(15.dp)
                             )
 
-                            Spacer(modifier = Modifier.width(10.dp))
+                            Spacer(modifier = Modifier.width(20.dp))
 
                             Text(
                                 "أسئلة ",

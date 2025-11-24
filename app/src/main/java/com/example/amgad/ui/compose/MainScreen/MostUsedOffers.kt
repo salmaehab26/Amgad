@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -51,11 +52,15 @@ import com.example.amgad.ui.theme.YankeesBlue
 import com.example.amgad.ui.viewModel.HomeViewModel.MostUsedOfferViewModel
 
 @Composable
-fun MostUsedOffersPart(mostUsedOffersViewModel: MostUsedOfferViewModel = hiltViewModel(), navigatDocumentAtachement: () -> Unit) {
+fun MostUsedOffersPart(
+    mostUsedOffersViewModel: MostUsedOfferViewModel = hiltViewModel(),
+    navigatDocumentAtachement: () -> Unit
+) {
     val items by mostUsedOffersViewModel.offers.collectAsState()
 
-    MostUsedOffers(items,navigatDocumentAtachement)
+    MostUsedOffers(items, navigatDocumentAtachement)
 }
+
 @Composable
 fun MostUsedOffers(offers: List<MostUsedOfferModel>, navigatDocumentAtachement: () -> Unit) {
 
@@ -73,7 +78,8 @@ fun MostUsedOffers(offers: List<MostUsedOfferModel>, navigatDocumentAtachement: 
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = YankeesBlue,
-                fontFamily = Alexandria, modifier =  Modifier.clickable(onClick = navigatDocumentAtachement)
+                fontFamily = Alexandria,
+                modifier = Modifier.clickable(onClick = navigatDocumentAtachement)
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_trending),
@@ -86,11 +92,12 @@ fun MostUsedOffers(offers: List<MostUsedOfferModel>, navigatDocumentAtachement: 
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
 
             LazyRow(
+                contentPadding = PaddingValues(horizontal = 16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(215.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalAlignment = Alignment.Bottom
+                verticalAlignment = Alignment.Bottom,
             ) {
                 items(offers) { offer ->
                     OfferCard(
@@ -104,16 +111,15 @@ fun MostUsedOffers(offers: List<MostUsedOfferModel>, navigatDocumentAtachement: 
 }
 
 
-
 @Composable
 fun OfferCard(
     offer: MostUsedOfferModel, modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
-            .height(200.dp)
+            .height(212.dp)
             .width(200.dp),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
     ) {
 
@@ -138,9 +144,10 @@ fun OfferCard(
 
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth().fillMaxHeight()
+                        .fillMaxWidth()
+                        .fillMaxHeight()
                         .background(White)
-                        .padding(10.dp),
+                        .padding(top=16.dp,end=10.dp,start=10.dp,bottom=10.dp),
                     Arrangement.Center
                 ) {
 
@@ -153,7 +160,7 @@ fun OfferCard(
                         overflow = TextOverflow.Ellipsis
 
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(15.dp))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
@@ -173,6 +180,7 @@ fun OfferCard(
                     }
                 }
             }
+
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.CenterStart,

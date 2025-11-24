@@ -39,8 +39,8 @@ import com.example.amgad.ui.theme.YellowBorder
 fun HrCard(onClick: () -> Unit) {
     Card(
         modifier = Modifier
-            .padding(20.dp)
-            .height(120.dp)
+            .padding(horizontal = 16.dp,)
+            .height(130.dp)
             .border(
                 color = YellowBorder, width = 1.dp, shape = RoundedCornerShape(10.dp)
             ),
@@ -48,7 +48,7 @@ fun HrCard(onClick: () -> Unit) {
             containerColor = White
         ),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 3.dp
+            defaultElevation = 2.dp
         ),
 
 
@@ -77,14 +77,13 @@ fun HrCard(onClick: () -> Unit) {
                     )
                 )
                 Row(
-                    verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding()
+                    verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 14.dp)
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowBack,
+                    Image(
+                        painter =painterResource(R.drawable.arrow_ic) ,
                         contentDescription = null,
-                        tint = Gray,
                         modifier = Modifier
-                            .size(30.dp)
+                            .size(25.dp)
                             .padding(5.dp)
                     )
                     Text(

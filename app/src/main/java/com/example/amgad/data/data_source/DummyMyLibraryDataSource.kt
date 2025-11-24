@@ -61,7 +61,11 @@ class DummyMyLibraryDataSource {
                 title = "الصوت التأميني: كل ما تحتاج لمعرفته عن التأمين في دقائق",
                 description = "حلقات صوتية قصيرة تشرح مفاهيم التأمين وتجيب على الأسئلة الشائعة",
                 image = R.drawable.banner,
-                type = ItemType.Audio
+                type = ItemType.Audio,
+                videoUrl = R.raw.shouts_and
+
+
+
 
             ),
             MyLibraryModel(
@@ -69,7 +73,8 @@ class DummyMyLibraryDataSource {
                 title = "نغمة الحماية: نصائح تأمينية مباشرة من الخبراء",
                 description = "سلسلة تسجيلات تحتوي على نصائح من خبراء التأمين حول اختيار الوثائق المناسبة والاستفادة منها",
                 image = null,
-                type = ItemType.Audio
+                type = ItemType.Audio,
+                videoUrl = R.raw.shouts_and
 
             ),
 

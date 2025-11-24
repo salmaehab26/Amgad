@@ -1,3 +1,5 @@
+package com.example.amgad.ui.compose.MyLibraryScreen
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -13,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,7 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -37,7 +37,6 @@ import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.GrayBodyTextColor
 import com.example.amgad.ui.theme.HrRequestTabBackground
 import com.example.amgad.ui.theme.YankeesBlue
-
 @Composable
 fun CardItem(
     item: MyLibraryModel,
@@ -51,10 +50,8 @@ fun CardItem(
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
             .background(Color.White)
-            .padding(14.dp) .clickable(
-                enabled = item.videoUrl != null || item.type == ItemType.Article,
-                onClick = onCardClick
-            )
+            .padding(14.dp)
+            .clickable(onClick = onCardClick)
     ) {
 
         Column {
@@ -110,24 +107,24 @@ fun CardItem(
                                 .width(250.dp)
                         )
                         if(needsExpand){
-                        Row(
-                            modifier = Modifier.width(250.dp),
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            Image(
-                                painter = painterResource(
-                                    id = if (expanded) R.drawable.upload else R.drawable.down_arrow
-                                ),
-                                contentDescription = "Expand",
-                                modifier = Modifier
-                                    .size(20.dp)
-                                    .padding(top = 4.dp)
-                                    .clickable { expanded = !expanded }
-                            )
+                            Row(
+                                modifier = Modifier.width(250.dp),
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(
+                                        id = if (expanded) R.drawable.upload else R.drawable.down_arrow
+                                    ),
+                                    contentDescription = "Expand",
+                                    modifier = Modifier
+                                        .size(20.dp)
+                                        .padding(top = 4.dp)
+                                        .clickable { expanded = !expanded }
+                                )
+                            }
                         }
-                    }}
+                    }
                 }
-
 
                 Spacer(Modifier.width(10.dp))
                 if (item.image == null) {
@@ -146,14 +143,12 @@ fun CardItem(
                                 modifier = Modifier.size(20.dp)
                             )
                         } else if (item.type == ItemType.Audio) {
-
                             Image(
                                 painter = painterResource(id = R.drawable.ic_audio),
                                 contentDescription = null,
                                 modifier = Modifier.size(20.dp)
                             )
                         } else if (item.type == ItemType.Article) {
-
                             Image(
                                 painter = painterResource(id = R.drawable.ic_article),
                                 contentDescription = null,
@@ -175,10 +170,7 @@ fun CardItem(
                             )
                     )
                 }
-
             }
         }
     }
 }
-
-

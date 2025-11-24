@@ -48,10 +48,10 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.amgad.R
+import com.example.amgad.ui.compose.Attendencescreen.TopHeaderSection
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.CalendarDayBackgroundSelected
 import com.example.amgad.ui.theme.CalendarDayBorder
@@ -139,30 +139,7 @@ fun AttendanceScreen(onNavigateBack: () -> Unit) {
                     .fillMaxSize()
                     .padding(16.dp)
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(45.dp),
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-
-                    Text(
-                        "سجل الحضور والتغيب",
-                        fontSize = 16.sp,
-                        color = YankeesBlue,
-                        textAlign = TextAlign.Center, fontFamily = Alexandria,
-                    )
-                    Spacer(modifier = Modifier.width(90.dp))
-                    Icon(
-                        imageVector = Icons.Default.KeyboardArrowRight,
-                        contentDescription = "Back",
-                        tint = YankeesBlue,
-                        modifier = Modifier.size(24.dp).clickable(onClick = onNavigateBack)
-
-                    )
-
-                }
+                TopHeaderSection(onNavigateBack = onNavigateBack)
 
                 Row(
                     modifier = Modifier
@@ -407,37 +384,37 @@ fun AttendanceScreen(onNavigateBack: () -> Unit) {
 
         ) { Row {
 
-                Text(
-                    "وقت الانصراف",
-                    color = RecordCardText,
-                    textAlign = TextAlign.End,
-                    modifier = Modifier.width(200.dp)
-                )
+            Text(
+                "وقت الانصراف",
+                color = RecordCardText,
+                textAlign = TextAlign.End,
+                modifier = Modifier.width(200.dp)
+            )
             Text(
                 "وقت الانصراف",
                 color = RecordCardText,
                 textAlign = TextAlign.End,
                 modifier = Modifier.width(180.dp)
             )}
-             Row (   horizontalArrangement = Arrangement.Center,
-                 verticalAlignment = Alignment.CenterVertically,
-                 modifier = Modifier
-                     .padding(horizontal = 16.dp)
-                     .fillMaxWidth()
-                     .height(55.dp)
-                     .background(RecordCard, RoundedCornerShape(12.dp))
-             ){   TimeCard(
-                 time = "م4:50 "
-             )
-                 TimeCard(
-                     time = "م4:50 "
-                 )
-             }}
+            Row (   horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth()
+                    .height(55.dp)
+                    .background(RecordCard, RoundedCornerShape(12.dp))
+            ){   TimeCard(
+                time = "م4:50 "
+            )
+                TimeCard(
+                    time = "م4:50 "
+                )
+            }}
 
 
 
 
-        }
+    }
 
 }
 
@@ -478,49 +455,49 @@ fun DayCard(dayName: String, dayNumber: String, isSelected: Boolean, onClick: ()
 @Composable
 fun TimeCard(time: String) {
 
-        Row(
-            modifier = Modifier.fillMaxHeight(),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(horizontalAlignment = Alignment.End) {
-                Row(
-                    modifier = Modifier.width(176.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.End
-                ) {
+    Row(
+        modifier = Modifier.fillMaxHeight(),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(horizontalAlignment = Alignment.End) {
+            Row(
+                modifier = Modifier.width(176.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.End
+            ) {
 
-                    Icon(
-                        imageVector = Icons.Default.Edit,
-                        contentDescription = null,
-                        tint = RecordCardText,
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        time, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = SignOutTime
-                    )
-                }
-
+                Icon(
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = null,
+                    tint = RecordCardText,
+                    modifier = Modifier.size(20.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    time, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = SignOutTime
+                )
             }
-            Column(horizontalAlignment = Alignment.End) {
-                Row(
-                    modifier = Modifier.width(175.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Edit,
-                        contentDescription = null,
-                        tint = Color.Gray,
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        time, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = SignInTime
-                    )
-                }
+
+        }
+        Column(horizontalAlignment = Alignment.End) {
+            Row(
+                modifier = Modifier.width(175.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.End
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier.size(20.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    time, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = SignInTime
+                )
             }
         }
-
     }
+
+}

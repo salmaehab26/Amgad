@@ -41,7 +41,7 @@ fun TopAppbar(navigatProfile: () -> Unit, navigatAttendence: () -> Unit) {
             .padding(10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        EndPartOfTopBar()
+        EndPartOfTopBar(navigatAttendence)
         Spacer(modifier = Modifier.weight(1f))
 
         StartPartOfTopBar()
@@ -142,12 +142,11 @@ fun StartPartOfTopBar() {
 
 }
 
-@Preview(showBackground = true)
 @Composable
-fun EndPartOfTopBar() {
+fun EndPartOfTopBar(navigatAttendence: () -> Unit) {
     Row(modifier = Modifier.padding(start =5.dp)) {
         Column(
-            modifier = Modifier.padding(end = 5.dp),
+            modifier = Modifier.padding(end = 5.dp).clickable(onClick = navigatAttendence),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

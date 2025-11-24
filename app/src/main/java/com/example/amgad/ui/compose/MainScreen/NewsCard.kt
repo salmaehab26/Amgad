@@ -59,7 +59,8 @@ fun NewsCard(news: List<NewsCardModel>){
 
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
-            contentPadding = PaddingValues(horizontal = 4.dp)
+            contentPadding = PaddingValues(horizontal = 16.dp),
+
         ) {
             items(news) { new ->
                 NewsCardItem(new)
@@ -70,7 +71,7 @@ fun NewsCard(news: List<NewsCardModel>){
 @Composable
 fun NewsCardItem(news: NewsCardModel) {
     Card(
-        modifier = Modifier.padding( 10.dp)
+        modifier = Modifier
             .width(280.dp)
             .height(190.dp),
         shape = RoundedCornerShape(10.dp),

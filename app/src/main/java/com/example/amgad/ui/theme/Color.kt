@@ -1,5 +1,6 @@
 package com.example.amgad.ui.theme
 
+import android.provider.MediaStore
 import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)
@@ -78,3 +79,4 @@ val HrRemoteBackground = 0xFFF3FAF1
 val HrRemoteText = 0xFF20411B
 val SignOutTime = Color(0xFF8C252F)
 val SignInTime = Color(0xFF2F8B8B)
+val AudiioScreenBackground=Color(0xFF878787)

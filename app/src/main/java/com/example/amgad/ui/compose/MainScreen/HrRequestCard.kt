@@ -57,7 +57,7 @@ fun HrRequestCardContent(items: List<HrRequestModel>) {
         colors = CardDefaults.cardColors(containerColor = White),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(20.dp)
+            .padding(horizontal = 16.dp)
     ) {
         Column(
             modifier = Modifier.padding(18.dp), Arrangement.Top,
@@ -105,6 +105,8 @@ fun HrRequestItemBox(item: HrRequestModel) {
 
             text = item.title, fontSize = 11.sp, color = Color.Black, fontFamily = Alexandria
         )
+        Spacer(modifier = Modifier.height(15.dp))
+
     }
 }
 

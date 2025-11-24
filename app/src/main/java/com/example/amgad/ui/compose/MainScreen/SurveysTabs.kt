@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.amgad.domain.model.MainModle.TabItemModel
 import com.example.amgad.ui.theme.Alexandria
+import com.example.amgad.ui.theme.GrayBodyTextColor
+import com.example.amgad.ui.theme.YankeesBlue
 
 @Preview
 @Composable
@@ -90,7 +92,7 @@ fun TabBox(
         modifier = modifier
             .height(40.dp)
             .width(120.dp)
-            .background(White, RoundedCornerShape(8.dp))
+            .background( if (isSelected) Color(0xFFFFE6E0) else White, RoundedCornerShape(8.dp))
             .border(
                 width = if (isSelected) 2.dp else 1.dp,
                 color = if (isSelected) Color(0xFFFF6B6B) else Color(0xFFE0E0E0),
@@ -111,12 +113,12 @@ fun TabBox(
                 modifier = Modifier
                     .size(24.dp)
                     .background(
-                        if (isSelected) Color(0xFFFF6B6B) else Color(0xFF9E9E9E), CircleShape
+                        if (isSelected) Color(0xFFF9D8D0) else Color(0xFFEDEDF0), CircleShape
                     ), contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = count.toString(),
-                    color = White,
+                    color =  if (isSelected) Color(0xFFA5260A) else GrayBodyTextColor,
                     fontSize = 13.sp,
                     fontFamily = Alexandria
                 )
@@ -124,7 +126,7 @@ fun TabBox(
             Text(
                 text = title,
                 fontSize = 14.sp,
-                color = if (isSelected) Color(0xFF333333) else Color(0xFF666666),
+                color = if (isSelected) Color(0xFF6D2514) else YankeesBlue,
                 fontFamily = Alexandria,
                 fontWeight = FontWeight.Bold,
             )

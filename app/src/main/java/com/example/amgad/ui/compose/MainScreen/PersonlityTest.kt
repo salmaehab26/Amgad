@@ -41,7 +41,7 @@ fun PersonlityTest(onClick: () -> Unit) {
     Spacer(modifier = Modifier.height(10.dp))
     Card(
         modifier = Modifier
-            .padding(20.dp)
+            .padding(16.dp)
             .height(165.dp),
         colors = CardDefaults.cardColors(
             containerColor = White

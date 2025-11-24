@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -13,7 +14,7 @@ import com.example.amgad.R
 @Composable
 fun AmjadConsultantCard(onClick: () -> Unit) {
     Image(
-        modifier = Modifier
+        modifier = Modifier.padding(bottom = 5.dp)
             .fillMaxWidth()
             .height(155.dp)
             .clickable { onClick() },

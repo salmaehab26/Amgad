@@ -40,19 +40,25 @@ object Tab3
 object Tab4
 
 @Serializable
-object Tab2Graph
+object Tab5
 
 @Serializable
-object Tab3Graph
+object ProfileGraph
+
+@Serializable
+object DocumentAttachmentGraph
+
+@Serializable
+object AttendanceGraph
 
 @Serializable
 object Tab4Graph
 
 @Serializable
-object Tab5
+object HrRequestGraph
 
 @Serializable
-object Tab5Graph
+object MyLibraryGraph
 
 @Serializable
 object MyLibraryScreen

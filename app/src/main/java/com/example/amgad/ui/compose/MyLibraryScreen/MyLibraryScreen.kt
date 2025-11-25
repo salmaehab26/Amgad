@@ -91,7 +91,7 @@ fun ItemList(
     items: List<MyLibraryModel>, onNavigateToMediaPlayer: (MyLibraryModel) -> Unit
 ) {
     LazyColumn {
-        items(items) { item ->
+        items(items, key = { it.title }) { item ->
             CardItem(
                 item = item,
                 onCardClick = {

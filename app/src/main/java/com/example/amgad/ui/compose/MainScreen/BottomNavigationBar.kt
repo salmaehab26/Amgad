@@ -30,13 +30,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.amgad.ui.navigation.HomeGraph
 import com.example.amgad.ui.navigation.HomeScreen
 import com.example.amgad.ui.navigation.Tab2
-import com.example.amgad.ui.navigation.Tab2Graph
 import com.example.amgad.ui.navigation.Tab3
-import com.example.amgad.ui.navigation.Tab3Graph
 import com.example.amgad.ui.navigation.Tab4
-import com.example.amgad.ui.navigation.Tab4Graph
 import com.example.amgad.ui.navigation.Tab5
-import com.example.amgad.ui.navigation.Tab5Graph
 import com.example.amgad.ui.theme.CompanyColor
 import com.example.app.ui.navigation.bottomTabs
 
@@ -44,7 +40,7 @@ import com.example.app.ui.navigation.bottomTabs
 fun BottomNavigationBar(navController: NavHostController,modifier: Modifier = Modifier ) {
 
     val bottomNavDestinations = listOf(
-        HomeGraph, Tab2Graph, Tab3Graph, Tab4Graph, Tab5Graph
+        HomeGraph, Tab2, Tab3, Tab4, Tab5
     )
 
     val entry by navController.currentBackStackEntryAsState()
@@ -66,10 +62,10 @@ fun BottomNavigationBar(navController: NavHostController,modifier: Modifier = Mo
 
                 val selected = when (tabRoute) {
                     HomeGraph -> currentDestination?.route == HomeScreen::class.qualifiedName
-                    Tab2Graph -> currentDestination?.route == Tab2::class.qualifiedName
-                    Tab3Graph -> currentDestination?.route == Tab3::class.qualifiedName
-                    Tab4Graph -> currentDestination?.route == Tab4::class.qualifiedName
-                    Tab5Graph -> currentDestination?.route == Tab5::class.qualifiedName
+                    Tab2 -> currentDestination?.route == Tab2::class.qualifiedName
+                    Tab3 -> currentDestination?.route == Tab3::class.qualifiedName
+                    Tab4 -> currentDestination?.route == Tab4::class.qualifiedName
+                    Tab5 -> currentDestination?.route == Tab5::class.qualifiedName
                     else -> false
                 }
 

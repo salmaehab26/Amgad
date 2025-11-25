@@ -1,9 +1,8 @@
-package com.example.amgad.ui.compose
+package com.example.amgad.ui.compose.MyLibraryScreen
 
 import androidx.annotation.OptIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,7 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderColors
@@ -29,13 +27,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -47,17 +43,31 @@ import com.example.amgad.R
 import com.example.amgad.ui.theme.Alexandria
 import com.example.amgad.ui.theme.YankeesBlue
 import androidx.core.net.toUri
-import androidx.lifecycle.compose.LocalLifecycleOwner
-import androidx.media3.common.util.Log
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.amgad.ui.theme.AudiioScreenBackground
-import com.example.amgad.ui.theme.Gray
-import com.example.amgad.ui.theme.GrayBodyTextColor
+import com.example.amgad.ui.viewModel.HrRequestDetailsScreenViewModel.HrRequestScreenDetailsViewModel
+import com.example.amgad.ui.viewModel.MyLibraryDetailsViewModel.MyLibraryDetailsViewMode
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
-@OptIn(UnstableApi::class)
 @Composable
 fun MediaPlayerScreen(
+    viewModel: MyLibraryDetailsViewMode = hiltViewModel(),
+    onNavigateBack: () -> Unit
+) {
+    MediaPlayerScreenPart(
+        viewModel.title,
+        viewModel.description,
+        viewModel.mediaUrl,
+        viewModel.mediaType,
+        onNavigateBack
+    )
+}
+
+
+@OptIn(UnstableApi::class)
+@Composable
+fun MediaPlayerScreenPart(
     title: String,
     description: String?,
     mediaUrl: Int?,
@@ -97,12 +107,7 @@ fun MediaPlayerScreen(
                 )
                 .padding(16.dp), verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
-                painter = painterResource(R.drawable.ic_back),
-                contentDescription = "رجوع",
-                modifier = Modifier
-                    .size(24.dp)
-                    .clickable { onNavigateBack() })
+
 
             Spacer(Modifier.width(16.dp))
 
@@ -114,6 +119,14 @@ fun MediaPlayerScreen(
                 modifier = Modifier.weight(1f),
                 textAlign = TextAlign.End
             )
+            Spacer(Modifier.width(16.dp))
+
+            Image(
+                    painter = painterResource(R.drawable.ic_back),
+            contentDescription = "رجوع",
+            modifier = Modifier
+                .size(24.dp)
+                .clickable { onNavigateBack() })
         }
 
         Box(
@@ -142,7 +155,7 @@ fun MediaPlayerScreen(
                 "audio" -> {
                     mediaUrl?.let { url ->
                         AudioPlayerCard(
-                            title = title, onBack = onNavigateBack,exoPlayer=exoPlayer
+                            title = title, exoPlayer = exoPlayer
                         )
                     }
                 }
@@ -177,7 +190,7 @@ fun MediaPlayerScreen(
 @OptIn(UnstableApi::class)
 @Composable
 fun AudioPlayerCard(
-    title: String, onBack: () -> Unit,exoPlayer: ExoPlayer
+    title: String,  exoPlayer: ExoPlayer
 ) {
 
 
@@ -238,12 +251,19 @@ fun AudioPlayerCard(
                     modifier = Modifier
                         .padding(9.dp)
                         .size(20.dp)
-                        .clickable {    exoPlayer.playWhenReady = !exoPlayer.playWhenReady },
+                        .clickable {
+                            exoPlayer.playWhenReady = !exoPlayer.playWhenReady
+
+                        },
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
                         painter = painterResource(
-                            if (isPlaying) R.drawable.pause else R.drawable.play_buttton
+                            if ( exoPlayer.playWhenReady) {
+                                R.drawable.play_buttton
+                            } else {
+                                R.drawable.pause
+                            }
                         ),
                         contentDescription = if (isPlaying) "Pause" else "Play",
                         modifier = Modifier.size(15.dp)
@@ -254,8 +274,7 @@ fun AudioPlayerCard(
 
                 Slider(
                     value = if (duration > 0) position / duration.toFloat() else 0f,
-                    onValueChange = {
-                    newValue ->
+                    onValueChange = { newValue ->
                         val seekPosition = (newValue * duration).toLong()
                         exoPlayer.seekTo(seekPosition)
                     },
